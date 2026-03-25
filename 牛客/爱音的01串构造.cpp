@@ -1,4 +1,60 @@
 /*
 https://ac.nowcoder.com/acm/contest/120564/F
-æ€è·¯è§£æï¼š
+Ë¼Â·½âÎö£º 
 */
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+/**
+ * Ë¼Â·£º
+ * ×Ü MEX = (°üº¬0µÄ×Ó´®Êı) + (Í¬Ê±°üº¬0ºÍ1µÄ×Ó´®Êı)
+ * Éè T Îª×Ü×Ó´®Êı£¬f(0s) ÎªÈ«0×Ó´®Êı£¬f(1s) ÎªÈ«1×Ó´®Êı
+ * ×Ü MEX = (T - f(1s)) + (T - f(0s) - f(1s)) = 2T - f(0s) - 2f(1s)
+ * Ä¿±ê£º×îĞ¡»¯ f(0s) + 2f(1s)¡£
+ * Í¨¹ı½«ÊıÁ¿½Ï¶àµÄ×Ö·û¾¡¿ÉÄÜ¾ùÔÈµØÓÉÊıÁ¿½ÏÉÙµÄ×Ö·û¸ô¿ªÀ´´ïµ½Ä¿µÄ¡£
+ */
+
+void solve() {
+    int a, b;
+    if (!(cin >> a >> b)) return;
+
+    if (a > b) {
+        // 0 ¶à£¬ÓÃ 1 À´¸ô¿ª 0
+        int k = b + 1; // ·İÊı
+        int q = a / k; // Ã¿·İ»ù´¡¸öÊı
+        int r = a % k; // ÓàÊı·ÖÅä
+        for (int i = 0; i < k; ++i) {
+            int current_zeros = q + (i < r ? 1 : 0);
+            for (int j = 0; j < current_zeros; ++j) cout << '0';
+            if (i < b) cout << '1'; // ×îºóÒ»¸ö 0 ¿éºó²»¼Ó 1
+        }
+        cout << '\n';
+    } else {
+        // 1 ¶à»òÏàµÈ£¬ÓÃ 0 À´¸ô¿ª 1
+        int k = a + 1;
+        int q = b / k;
+        int r = b % k;
+        for (int i = 0; i < k; ++i) {
+            int current_ones = q + (i < r ? 1 : 0);
+            for (int j = 0; j < current_ones; ++j) cout << '1';
+            if (i < a) cout << '0'; // ×îºóÒ»¸ö 1 ¿éºó²»¼Ó 0
+        }
+        cout << '\n';
+    }
+}
+
+int main() {
+    // ÓÅ»¯ I/O
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    int t;
+    cin >> t;
+    while (t--) {
+        solve();
+    }
+    return 0;
+}
+
