@@ -17,7 +17,7 @@ f(1s)为仅由1组成的子串数量
 因为相同的字符连在一起产生的“纯字符子串”的数量是呈平方级增长，所以我们切分得越均匀越好
 1和0中少的字符孤立存在将另一字符尽可能均匀切分 
 */
-#include<iotream>
+#include<iostream>
 #include<string>
 using namespace std;
 
@@ -30,12 +30,45 @@ void solve()
 		long long k=b+1;//切成多少份
 		long long q=a/k;//每份多少个
 		long long r=a%k;//剩多少个，分到前r组去
-		for(long long) 
+		for(long long i=0;i<k;++i)
+		{
+			long long _q=q+(i<r?1:0);//加上多余的
+			for(long long j=0;j<_q;++j)
+			{
+				cout<<'0';
+			 } 
+			if(i<b)
+			{
+				cout<<'1';
+			}
+		 } 
+		 cout<<'\n';
+	}
+	else
+	{
+		long long k=a+1;//切成多少份
+		long long q=b/k;//每份多少个
+		long long r=b%k;//剩多少个，分到前r组去
+		for(long long i=0;i<k;++i)
+		{
+			long long _q=q+(i<r?1:0);//加上多余的
+			for(long long j=0;j<_q;++j)
+			{
+				cout<<'1';
+			 } 
+			if(i<a)
+			{
+				cout<<'0';
+			}
+		 } 
+		 cout<<'\n';
 	}
 }
 
 int main()
 {
+	ios::sync_with_stdio(false);
+    cin.tie(nullptr);
 	long long t;
 	cin>>t;
 	while(t--)
