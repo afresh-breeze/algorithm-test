@@ -9,3 +9,10 @@ https://ac.nowcoder.com/acm/contest/120565/E
 pre[r]>= pre[l-1] -> S(l,r)=pre[r]-pre[l-1]
 pre[r]<pre[l-1]   -> S(l,r)=pre[r]-pre[l-1]+p 
 */
+#include<iostream>
+#include<vector>
+#include<aitorithm>
+int main()
+{
+	return 0;
+}
