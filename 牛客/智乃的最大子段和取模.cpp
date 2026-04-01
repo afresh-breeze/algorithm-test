@@ -6,8 +6,8 @@ https://ac.nowcoder.com/acm/contest/120565/E
 则S(l,r)=(pre[r]-pre[l-1]+p)%p 
 对于每一个r，我们想要找到一个l-1<r使得S(l,r)最大
 于是有两种情况：
-pre[r]>= pre[l-1] -> S(l,r)=pre[r]-pre[l-1]
-pre[r]<pre[l-1]   -> S(l,r)=pre[r]-pre[l-1]+p 
+pre[r]>= pre[l-1] -> S(l,r)=pre[r]-pre[l-1]  -> pre[l-1]越小越好，即找到所有目前出现过的前缀和的最小值 
+pre[r]<pre[l-1]   -> S(l,r)=pre[r]-pre[l-1]+p  -> pre[r]-pre[l-1]负得越小越好，即找到第一个大于pre[r]的pre[l-1] 
 */
 #include<iostream>
 #include<vector>
