@@ -1,7 +1,8 @@
 /*
 https://ac.nowcoder.com/acm/contest/120566/A
-思路解析见附带文件 
+思路锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟侥硷拷 
 */
+//6
 #include<iostream>
 #include<vector>
 using namespace std;
