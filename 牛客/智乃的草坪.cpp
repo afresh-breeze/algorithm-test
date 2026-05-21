@@ -1,4 +1,79 @@
 /*
 https://ac.nowcoder.com/acm/contest/120565/C
-æ€è·¯è§£æï¼š
+Ë¼Â·½âÎö£º
+ 
 */
+#include<iostream>
+#include<vector>
+#include<algorithm>
+#include<cmath>
+using namespace std;
+struct Sprinkler
+{
+	double p,v;
+};
+int main()
+{
+	ios::sync_with_stdio(false);
+    cin.tie(0);
+    int n,k;
+    double r,c;
+    cin>>n>>k>>r>>c;
+    vector<Sprinkler> a(n);
+    for (int i = 0; i < n; ++i)
+    {
+        cin >> a[i].p >> a[i].v;
+    }
+    //¼ì²éÔÚÊ±¼äÎªtÊ±£¬ÄÜ·ñÓÃ²»³¬¹ık¸öÅçÍ·¸²¸ÇÕû¸ö[0,c]
+    auto check=[&](double t)->bool
+	{
+		vector<pair<double,double>> segs;//Ò»¸ö¶¯Ì¬Êı×é£¬ ´æ´¢Ã¿¸öÅçÍ·ÔÚµ±ÏÂÊ±¼ätÏÂ¿ÉÓÃµÄ¸²¸ÇÇø¼ä 
+		segs.reserve(n);//¸øsegsÔ¤Áô¿Õ¼ä 
+		for(int i=0;i<n;++i)//¼ÆËãÃ¿¸öÅçÍ·ÔÚxÖáÉÏÄÜÍêÕû¸²¸Ç²İÆº¸ß¶ÈµÄÇø¼ä 
+		{
+			double radius=a[i].v*t;//µ±Ç°Ê±¼äÏÂ¸ÃÅçÍ·µÄÅçË®°ë¾¶
+			if(radius<r) continue;//Èç¹û°ë¾¶Á¬r¶¼²»µ½Ôò¸ÃÅçÍ·ÔÚµ±Ç°Ê±¼äÎŞÓÃ
+			double dx=sqrt(radius*radius-r*r);
+			double L=a[i].p-dx;//Çø¼ä×ó¶Ëµã
+			double R=a[i].p+dx;//Çø¼äÓÒ¶Ëµã
+			segs.push_back({L,R});//´æÈësegsÊı×é 
+		}
+		if(segs.empty()) return false;//Èç¹ûÃ»ÓĞÒ»¸ö¿ÉÓÃÇø¼ä£¬Ôòµ±Ç°Ê±¼ä²»ĞĞ
+		sort(segs.begin(),segs.end());//°´×ó¶Ëµã´ÓĞ¡µ½´óÅÅĞò 
+		//Ì°ĞÄ¸²¸Ç[0,c] 
+		double cur=0.0;//µ±Ç°ÒÑ¾­¸²¸Çµ½µÄÎ»ÖÃ
+		int used=0;//ÒÑ¾­Ê¹ÓÃÁË¶àÉÙ¸öÅçÍ·
+		int i=0;//É¨ÃèÇø¼äµÄÖ¸Õë
+		int m=(int)segs.size();
+		while(cur<c)//Ö»ÒªÃ»¸²¸Çµ½c£¬¾Í¼ÌĞøÑ¡Çø¼ä
+		{
+			double farthest=cur;//ÕâÒ»ÂÖÄÜÀ©Õ¹µ½µÄ×îÔ¶Î»ÖÃ
+			while(i<m && segs[i].first<=cur)//ÕÒ×ó¶Ëµã<=curµÄ£¬ÕâÑù²ÅÄÜÏÎ½ÓÉÏ 
+			{
+				farthest=max(farthest,segs[i].second);//·´¸´¸²¸Çfarthest 
+				i++;
+			} 
+			if(farthest<=cur) return false;//ÕâÒ»ÂÖÃ»ÄÜÕıÈ·ÍÆ½ø£¬Ôò³öÏÖÁË¶Ï²ã£¬µ±Ç°Ê±¼ä²»ĞĞ
+			cur=farthest;
+			used++;
+			if(used>k) return false;//³¬¹ık¸öÅçÍ·²»ºÏ·¨ 
+		} 
+		return true; 
+	};
+	double L=0,R=1;
+	while(!check(R)) R*=2;//²»¶ÏÀ©´órÖ±µ½r¿ÉĞĞ
+	for(int i=0;i<60;++i)
+	{
+		double mid=(L+R)/2.0;
+		if(check(mid))
+		{
+			R=mid;
+		}
+		else
+		{
+			L=mid;
+		}
+	} 
+	cout<<R;
+	return 0;
+}
