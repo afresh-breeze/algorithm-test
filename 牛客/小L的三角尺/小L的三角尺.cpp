@@ -1,6 +1,6 @@
 /*
 https://ac.nowcoder.com/acm/contest/120566/A
-思路解析详见附带文件 
+思路解析见附带文件 
 */
 #include<iostream>
 #include<vector>
