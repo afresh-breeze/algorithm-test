@@ -2,6 +2,7 @@
 https://ac.nowcoder.com/acm/contest/120566/A
 ˼·�����������ļ� 
 */
+//666
 #include<iostream>
 #include<vector>
 using namespace std;
