@@ -9,14 +9,41 @@ int main()
 {
 	ios::sync_with_stdio(false);
     cin.tie(NULL);
-    long n,w;
+    long n;
+    double w;
     cin>>n>>w;
-    vector<long long> x(n);
-    vector<long long> y(n);
+    vector<double> x(n),y(n);
+    double sum_y=0;
     for(long i=0;i<n;++i)
     {
     	cin>>x[i]>>y[i];
+    	sum_y+=y[i];
 	}
+	double S=sum_y-w;
+	//S<=0时，全部磨完
+	if(S<=0)
+	{
+		double ans=0;
+		for(long i=0;i<n;++i)
+		{
+			ans+=x[i];
+		}
+		cout<<fixed<<setprecision(9)<<ans;
+		return 0;
+	} 
+	//定义函数z_i(lambda)
+	auto z_i=[&](double lambda)->pair<double,double>
+	{
+		double sum_z=0,sum_hypo=0;
+		double m=lambda/sqrt(1-lambda*lambda);
+		for(long i=0;i<n;++i)
+		{
+			double z=min(y[i],x[i]*m);
+			sum_z+=z;
+			sum_hypo+=sqrt(x[i]8x[i]+z*z);
+		}
+		return {sum_z,sum_hypo};
+	} 
 	return 0;
 }
 
