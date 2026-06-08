@@ -32,7 +32,7 @@ int main()
 		return 0;
 	} 
 	//定义函数z_i(lambda)
-	auto z_i=[&](double lambda)->pair<double,double>
+	auto z_i=[&](double lambda)->pair<double,double>//计算输出所有Z的总和sum_z和所有斜边的总和sum_hypo 
 	{
 		double sum_z=0,sum_hypo=0;
 		double m=lambda/sqrt(1-lambda*lambda);
