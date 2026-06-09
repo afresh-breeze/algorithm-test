@@ -4,6 +4,9 @@ https://ac.nowcoder.com/acm/contest/120566/A
 */
 #include<iostream>
 #include<vector>
+#include<cmath>
+#include<iomanip>//用setprecision(9)
+#include<utility>//用pair<double,double> 
 using namespace std;
 int main()
 {
@@ -40,10 +43,28 @@ int main()
 		{
 			double z=min(y[i],x[i]*m);
 			sum_z+=z;
-			sum_hypo+=sqrt(x[i]8x[i]+z*z);
+			sum_hypo+=sqrt(x[i]*x[i]+z*z);
 		}
 		return {sum_z,sum_hypo};
-	} 
+	};
+	//二分查找lambda，使得g(lambda)=S，即sum_z=S 
+	double left=0,right=1-1e-12;
+	for(int i=0;i<200;i++)
+	{
+		double mid=(left+right)/2;
+		double sum_z=z_i(mid).first;
+		if(sum_z<S)
+		{
+			left=mid;
+		}
+		else
+		{
+			right=mid;
+		}
+	}
+	double lambda=(left+right)/2;
+	double ans=z_i(lambda).second;
+	cout<<fixed<<setprecision(9)<<ans;
 	return 0;
 }
 
