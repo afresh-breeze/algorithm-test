@@ -5,8 +5,8 @@ https://ac.nowcoder.com/acm/contest/120566/A
 #include<iostream>
 #include<vector>
 #include<cmath>
-#include<iomanip>//用setprecision(9)
-#include<utility>//用pair<double,double> 
+#include<iomanip>//用了setprecision(9)
+#include<utility>//用了pair<double,double> 
 using namespace std;
 int main()
 {
